@@ -19,7 +19,8 @@ var WeatherProject = React.createClass({
   _handleTextChange(event) {
   	var zip = event.nativeEvent.text;
   	this.setState({zip: zip});
-  	fetch('http://api.openweathermap.org/data/2.5/weather?id='+zip+'&APPID=fb3459605300717e453107a8b4a04926')
+  	fetch('http://api.openweathermap.org/data/2.5/weather?id=' + zip
+  				+ '&units=imperial&APPID=fb3459605300717e453107a8b4a04926')
   		.then((response) => response.json())
   		.then((responseJSON) => {
   			console.log(responseJSON);
