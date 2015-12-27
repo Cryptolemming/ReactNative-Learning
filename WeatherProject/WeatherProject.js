@@ -12,11 +12,7 @@ var WeatherProject = React.createClass({
   getInitialState: function() {
   	return {
   		zip: '',
-  		forecast: {
-  			main: '',
-  			description: '',
-  			temp: '',
-  		}
+  		forecast: null
   	};
   },
 
@@ -29,9 +25,10 @@ var WeatherProject = React.createClass({
   			console.log(responseJSON);
   			this.setState({
   				forecast: {
+  					name: responseJSON.name,
   					main: responseJSON.weather[0].main,
   					description: responseJSON.weather[0].description,
-  					temp: responseJSON.main.temp
+  					temp: responseJSON.main.temp,
   				}
   			});
   		})
@@ -41,6 +38,15 @@ var WeatherProject = React.createClass({
   },
 
   render: function() {
+  	var content = null;
+  	if (this.state.forecast!== null) {
+  		content = <Forecast
+			       		name={this.state.forecast.name}
+			        	main={this.state.forecast.main}
+			        	description={this.state.forecast.description}
+			        	temp={this.state.forecast.temp} />;
+  	}
+
     return (
     	<View style={styles.container}>
 	    	<Image source={require('./clouds.png')}
@@ -49,7 +55,7 @@ var WeatherProject = React.createClass({
 		      <View style={styles.overlay}>
 		      	<View style={styles.row}>
 			        <Text style={styles.mainText}>
-			          Weather for:
+			          Weather for (City ID):
 			        </Text>
 			        <View style={styles.zipContainer}>
 				        <TextInput
@@ -58,10 +64,7 @@ var WeatherProject = React.createClass({
 				        	onSubmitEditing={this._handleTextChange}/>
 			        </View>
 			      </View>
-			       <Forecast
-			        	main={this.state.forecast.main}
-			        	description={this.state.forecast.description}
-			        	temp={this.state.forecast.temp} />
+			      {content}
 		      </View>
 		    </Image>
 		  </View>
