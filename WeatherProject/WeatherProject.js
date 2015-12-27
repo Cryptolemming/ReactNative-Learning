@@ -4,12 +4,19 @@ var {
 	Text,
 	StyleSheet,
 	TextInput,
+	Image,
 } = React;
+var Forecast = require('./Forecast.js');
 
 var WeatherProject = React.createClass({
   getInitialState: function() {
   	return {
-  		zip: ''
+  		zip: '',
+  		forecast: {
+  			main: 'Clouds',
+  			description: 'few clouds',
+  			temp: 45.7,
+  		}
   	};
   },
 
@@ -20,17 +27,30 @@ var WeatherProject = React.createClass({
 
   render: function() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Weather for: {this.state.zip}
-        </Text>
-        <TextInput
-        	style={styles.input}
-        	onSubmitEditing={this._handleTextChange}/>
-      </View>
+    	<Image source={require('image!Colorado-River')}
+    				 resizeMode='cover'
+    				 style={styles.backdrop}>
+	      <View style={styles.overlay}>
+	      	<View style={styles.row}>
+		        <Text style={styles.mainText}>
+		          Weather for: {this.state.zip}
+		        </Text>
+		        <TextInput
+		        	style={[styles.zipCode, styles.mainText]}
+		        	returnKeyType='go'
+		        	onSubmitEditing={this._handleTextChange}/>
+		        <Forecast
+		        	main={this.state.forecast.main}
+		        	description={this.state.forecast.description}
+		        	temp={this.state.forecast.temp} />
+		       </View>
+	      </View>
+	    </Image>
     );
   }
 });
+
+var baseFontSize = 16;
 
 var styles = StyleSheet.create({
   container: {
@@ -39,21 +59,39 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  overlay: {
+  	paddingTop: 5,
+  	backgroundColor: '#000',
+  	opacity: 0.5,
+  	flexDirection: 'column',
+  	alignItems: 'center',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  row: {
+  	flex: 1,
+  	flexDirection: 'row',
+  	flexWrap: 'nowrap',
+  	alignItems: 'flex-start',
+  	padding: 30,
   },
-  input: {
-  	fontSize: 20,
-  	borderWidth: 2,
-  	height: 40,
-  	padding: 5,
+  zipContainer: {
+  	flex: 1,
+  	borderBottomColor: '#ddd',
+  	borderBottomWidth: 1,
+  	marginLeft: 5,
+  	marginTop: 3,
+  },
+  zipCode: {
+  	width: 50,
+  	height: baseFontSize,
+  },
+  mainText: {
+  	flex: 1,
+  	fontSize: baseFontSize,
+  	color: '#fff',
+  },
+  backdrop: {
+  	flex: 1,
+  	flexDirection: 'column',
   }
 });
 
