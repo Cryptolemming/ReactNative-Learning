@@ -27,25 +27,29 @@ var WeatherProject = React.createClass({
 
   render: function() {
     return (
-    	<Image source={require('image!Colorado-River')}
-    				 resizeMode='cover'
-    				 style={styles.backdrop}>
-	      <View style={styles.overlay}>
-	      	<View style={styles.row}>
-		        <Text style={styles.mainText}>
-		          Weather for: {this.state.zip}
-		        </Text>
-		        <TextInput
-		        	style={[styles.zipCode, styles.mainText]}
-		        	returnKeyType='go'
-		        	onSubmitEditing={this._handleTextChange}/>
-		        <Forecast
-		        	main={this.state.forecast.main}
-		        	description={this.state.forecast.description}
-		        	temp={this.state.forecast.temp} />
-		       </View>
-	      </View>
-	    </Image>
+    	<View style={styles.container}>
+	    	<Image source={require('./clouds.png')}
+	    				 resizeMode='cover'
+	    				 style={styles.backdrop}>
+		      <View style={styles.overlay}>
+		      	<View style={styles.row}>
+			        <Text style={styles.mainText}>
+			          Weather for:
+			        </Text>
+			        <View style={styles.zipContainer}>
+				        <TextInput
+				        	style={[styles.zipCode, styles.mainText]}
+				        	returnKeyType='go'
+				        	onSubmitEditing={this._handleTextChange}/>
+			        </View>
+			      </View>
+			       <Forecast
+			        	main={this.state.forecast.main}
+			        	description={this.state.forecast.description}
+			        	temp={this.state.forecast.temp} />
+		      </View>
+		    </Image>
+		  </View>
     );
   }
 });
@@ -55,9 +59,7 @@ var baseFontSize = 16;
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   overlay: {
   	paddingTop: 5,
