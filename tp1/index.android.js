@@ -12,23 +12,29 @@ var {
   View,
 } = React;
 
-var tp1 = React.createClass({
+var Intro = React.createClass({
+  propTypes: {
+    intro: React.PropTypes.string.isRequired,
+  },
+
   render: function() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native bitches!!!!!!!!!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
+          {this.props.intro}
         </Text>
       </View>
     );
   }
 });
+
+var Application = React.createClass({
+  render: function() {
+    return (
+      <Intro intro='Welcome to your first ReactNative App' />
+    )
+  }
+})
 
 var styles = StyleSheet.create({
   container: {
@@ -49,4 +55,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('tp1', () => tp1);
+AppRegistry.registerComponent('tp1', () => Application);
