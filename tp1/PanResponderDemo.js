@@ -48,8 +48,10 @@ var PanResponderDemo = React.createClass({
 		this._previousLeft = 20;
 		this._previousTop = 84;
 		this._circleStyles = {
-			left: this._previousLeft,
-			top: this._previousTop,
+			style: {
+				left: this._previousLeft,
+				top: this._previousTop,
+			}
 		};
 	},
 
@@ -79,13 +81,19 @@ var PanResponderDemo = React.createClass({
 
 	_highlight: function() {
 		this.circle && this.circle.setNativeProps({
-			backgroundColor: CIRCLE_HIGHLIGHT_COLOR
+			style: {
+				backgroundColor: CIRCLE_HIGHLIGHT_COLOR
+			}
+			
 		});
 	},
 
 	_unHighlight: function() {
 		this.circle && this.circle.setNativeProps({
-			backgroundColor: CIRCLE_COLOR
+			style: {
+				backgroundColor: CIRCLE_COLOR
+			}
+			
 		});
 	},
 
@@ -120,8 +128,8 @@ var PanResponderDemo = React.createClass({
 			vy: gestureState.vy,
 			numberActiveTouches: gestureState.numberActiveTouches
 		});
-		this._circleStyles.left = this._previousLeft + gestureState.dx;
-		this._circleStyles.top = this._previousTop + gestureState.dy;
+		this._circleStyles.style.left = this._previousLeft + gestureState.dx;
+		this._circleStyles.style.top = this._previousTop + gestureState.dy;
 		this._updatePosition();
 	},
 
