@@ -1,6 +1,5 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * various components for learning APIs etc
  */
 'use strict';
 
@@ -10,31 +9,17 @@ var {
   StyleSheet,
   Text,
   View,
+  TouchableHighlight,
 } = React;
-
-var Intro = React.createClass({
-  propTypes: {
-    intro: React.PropTypes.string.isRequired,
-  },
-
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          {this.props.intro}
-        </Text>
-      </View>
-    );
-  }
-});
+var Button = require('./Button');
 
 var Application = React.createClass({
   render: function() {
     return (
-      <Intro intro='Welcome to your first ReactNative App' />
-    )
+        <Button/>
+    );
   }
-})
+});
 
 var styles = StyleSheet.create({
   container: {
