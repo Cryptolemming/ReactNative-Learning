@@ -10,7 +10,6 @@ var {
 	StyleSheet,
 } = React;
 var BookItem = require('./BookItem');
-var QUERY_TYPE = 'hardcover-fiction';
 
 var BookList = React.createClass({
 	getInitialState: function() {
@@ -67,7 +66,6 @@ var BookList = React.createClass({
 	render: function() {
 		return (
 			<ListView
-				style={styles.container}
 				dataSource={this.state.dataSource}
 				renderRow={this._renderRow}
 				renderHeader={this._renderHeader}
