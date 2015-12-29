@@ -10,11 +10,12 @@ var {
 var Button = require('./Button');
 var PanResponderDemo = require('./PanResponderDemo');
 var BookList = require('./ListViewDemo/BookList');
+var CrossPlatForm = require('./CrossPlatformDemo/CrossPlatform');
 
 var Application = React.createClass({
   render: function() {
     return (
-        <BookList />
+        <CrossPlatform />
     );
   }
 });
