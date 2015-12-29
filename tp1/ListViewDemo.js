@@ -14,12 +14,26 @@ var ListViewDemo = React.createClass({
 			rowHasChanged: (r1, r2) => r1 !== r2
 		});
 		return {
-			dataSource: ds.cloneWithRows(['a', 'b', 'b', 'a longer example', 'd', 'e'])
+			dataSource: ds.cloneWithRows([])
 		};
 	},
 
+	_refreshData: function() {
+		var endpoint = 'http://api.nytimes.com/svc/books/v3/lists/hardcover-fiction?'+
+			'response-format=json&api-key=' + API_KEY;
+		fetch(endpoint)
+			.then((response) => response.json())
+			.then((rjson) => {
+				this.setState({
+					dataSource: this.state.dataSource.cloneWithRows(rjson.results.books)
+				});
+			});
+	},
+
 	_renderRow: function(rowData) {
-		return <Text style={styles.row}>{rowData}</Text>;
+		return <BookItem coverURL={rowData.book_image}
+						 title={rowData.title}
+						 author:{rowData.author}/>;
 	},
 
 	render: function() {
