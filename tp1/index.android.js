@@ -9,7 +9,7 @@ var {
 } = React;
 var Button = require('./Button');
 var PanResponderDemo = require('./PanResponderDemo');
-var BookList = require('/ListViewDemo/BookList');
+var BookList = require('./ListViewDemo/BookList');
 
 var Application = React.createClass({
   render: function() {
