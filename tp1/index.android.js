@@ -9,12 +9,12 @@ var {
 } = React;
 var Button = require('./Button');
 var PanResponderDemo = require('./PanResponderDemo');
-var ListViewDemo = require('./ListViewDemo');
+var BookList = require('/ListViewDemo/BookList');
 
 var Application = React.createClass({
   render: function() {
     return (
-        <ListViewDemo/>
+        <BookList />
     );
   }
 });

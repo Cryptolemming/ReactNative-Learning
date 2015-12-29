@@ -36,6 +36,26 @@ var ListViewDemo = React.createClass({
 						 author:{rowData.author}/>;
 	},
 
+	_renderHeader: function() {
+		return (
+			<View style={styles.sectionDivider}>
+				<Text style={styles.headingText}>
+					Bestsellers in Hardcover Fiction
+				</Text>
+			</View>
+		)
+	}
+
+	_renderFooter: function() {
+		return (
+			<View style={styles.sectionDivider}>
+				<Text>
+					Data from the New York Times Bestsellers list.
+				</Text>
+			</View>
+		);
+	},
+
 	render: function() {
 		return (
 			<ListView
