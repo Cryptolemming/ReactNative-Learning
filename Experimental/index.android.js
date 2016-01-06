@@ -12,11 +12,12 @@ var PanResponderDemo = require('./PanResponderDemo');
 var BookList = require('./ListViewDemo/BookList');
 var CrossPlatform = require('./CrossPlatformDemo/CrossPlatform');
 var FlexTest = require('./Flexbox');
+var Mondrian = require('./Mondrian');
 
 var Application = React.createClass({
   render: function() {
     return (
-        <FlexTest />
+        <Mondrian />
     );
   }
 });
