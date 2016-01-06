@@ -19,7 +19,7 @@ var Switch = React.createClass({
 		return (
 			<SwitchAndroid
 				onValueChange={this._onValueChange}
-				value={this.state.value}/>
+				value={this.state.value} />
 		);
 	}
 });

@@ -22,7 +22,7 @@ var CrossPlatform = React.createClass({
 	},
 
 	render: function() {
-		var colorClass = this.state.val ? styles.blueContainer : styles.redContainer;
+		var colorClass = this.state.value ? styles.blueContainer : styles.redContainer;
 		return (
 			<View style={[styles.container, colorClass]}>
 				<Text style={styles.welcome}>
@@ -49,7 +49,7 @@ var styles = StyleSheet.create({
 	welcome: {
 		fontSize: 20,
 		textAlign: 'center',
-		margin: 10
+		margin: 10,
 	},
 });
 
