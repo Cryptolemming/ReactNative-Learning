@@ -31,6 +31,7 @@ var styles = StyleSheet.create({
 	},
 	bottomRight: {
 		flexDirection: 'column',
+		flex: 2,
 	},
 	cellOne: {
 		flex: 1,
@@ -40,8 +41,8 @@ var styles = StyleSheet.create({
 		flex: 3,
 	},
 	cellThree: {
+		backgroundColor: '#FF0000',
 		flex: 5,
-		backgroundColor: '#FF000',
 	},
 	cellFour: {
 		flex: 3,
