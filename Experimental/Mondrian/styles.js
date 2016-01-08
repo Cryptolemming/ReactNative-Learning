@@ -14,9 +14,49 @@ var styles = StyleSheet.create({
 		right: 0,
 		bottom: 0,
 	},
-	childOne: {
-
+	base: {
+		borderColor: '#000',
+		borderWidth: 5,
 	},
+	topBlock: {
+		flexDirection: 'row',
+		flex: 5,
+	},
+	leftCol: {
+		flex: 2,
+	},
+	bottomBlock: {
+		flex: 2,
+		flexDirection: 'row',
+	},
+	bottomRight: {
+		flexDirection: 'column',
+	},
+	cellOne: {
+		flex: 1,
+		borderBottomWidth: 15,
+	},
+	cellTwo: {
+		flex: 3,
+	},
+	cellThree: {
+		flex: 5,
+		backgroundColor: '#FF000',
+	},
+	cellFour: {
+		flex: 3,
+		backgroundColor: '#0000FF',
+	},
+	cellFive: {
+		flex: 6,
+	},
+	cellSix: {
+		flex: 1,
+	},
+	cellSeven: {
+		flex: 1,
+		backgroundColor: '#FFFF00',
+	}
 });
 
 module.exports = styles;
