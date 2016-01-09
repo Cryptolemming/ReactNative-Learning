@@ -66,6 +66,9 @@ var WeatherProject = React.createClass({
 			        </View>
 			      </View>
 			      {content}
+            <Text style={styles.mainText}>
+              Test
+            </Text>
 		      </View>
 		    </Image>
 		  </View>
