@@ -98,10 +98,6 @@ var WeatherProject = React.createClass({
 var textStyles = require('./styles/typography.js');
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
   backdrop: {
   	flex: 1,
   	flexDirection: 'column',
