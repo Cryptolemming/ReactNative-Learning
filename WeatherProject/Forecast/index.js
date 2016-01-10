@@ -4,11 +4,12 @@ var {
 	Text,
 	StyleSheet
 } = React;
+var styles = require('/styles/typography.js');
 
 var Forecast = React.createClass({
 	render: function() {
 		return (
-			<View>
+			<View style={forecastStyles.forecast}>
 				<Text style={styles.bigText}>
 					City: {this.props.name}
 				</Text>
@@ -26,20 +27,10 @@ var Forecast = React.createClass({
 	}
 })
 
-var styles = StyleSheet.create({
-	bigText: {
-		flex: 2,
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-		color: '#fff',
-	},
-	mainText: {
-		flex: 1,
-		fontSize: 16,
-		textAlign: 'center',
-		color: '#fff',
+var forecastStyles = StyleSheet.create({
+	forecast: {
+		alignItems: 'center'
 	}
-})
+});
 
 module.exports = Forecast;
