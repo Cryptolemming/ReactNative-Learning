@@ -22,7 +22,7 @@ var WeatherProject = React.createClass({
   _handleTextChange(event) {
   	var id = event.nativeEvent.text;
   	this.setState({id: id});
-  	fetch(API_STEM + 'id=' + id	+ '&units=imperial&APPID=' + API_STEM)
+  	fetch('${API_STEM}id=${id}&units=imperial&APPID=${WEATHER_API_KEY}')
   		.then((response) => response.json())
   		.then((responseJSON) => {
   			console.log(responseJSON);
@@ -38,6 +38,37 @@ var WeatherProject = React.createClass({
   		.catch((error) => {
   			console.warn(error);
   		});
+  },
+
+  _getForecastForCoords: function(lat, lon) {
+    this._getForecast(
+      '${API_STEM}lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_API_KEY}'
+    );
+  },
+
+  _getForecastForId: function(id) {
+    this._getForecast(
+      '${API_STEM}q=${zip}&units=imperial$APPID=${WEATHER_API_KEY}'
+    );
+  },
+
+  _getForecast: function(url, cb) {
+    fetch(url) {
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        console.log(responseJSON);
+        this.setState({
+          forecast: {
+            main: responseJSON.weather[0].main,
+            description: responseJSON.weather[0].description,
+            temp: responseJSON.main.temp
+          }
+        });
+      })
+      .catch((error) => {
+        console.warn(error);
+      });
+    }
   },
 
   render: function() {
@@ -67,10 +98,8 @@ var WeatherProject = React.createClass({
 				        	onSubmitEditing={this._handleTextChange}/>
 			        </View>
 			      </View>
+            <LocationButton onGetCoords={this._getForecastForCoords} />
 			      {content}
-            <Text style={styles.mainText}>
-              Test
-            </Text>
 		      </View>
 		    </Image>
 		  </View>
