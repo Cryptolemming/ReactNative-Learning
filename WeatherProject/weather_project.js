@@ -6,21 +6,23 @@ var {
 	TextInput,
 	Image,
 } = React;
-var Forecast = require('./Forecast.js');
+var Forecast = require('./Forecast');
+
+var WEATHER_API_KEY = 'fb3459605300717e453107a8b4a04926';
+var API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
 
 var WeatherProject = React.createClass({
   getInitialState: function() {
   	return {
-  		zip: '',
+  		id: '',
   		forecast: null
   	};
   },
 
   _handleTextChange(event) {
-  	var zip = event.nativeEvent.text;
-  	this.setState({zip: zip});
-  	fetch('http://api.openweathermap.org/data/2.5/weather?id=' + zip
-  				+ '&units=imperial&APPID=fb3459605300717e453107a8b4a04926')
+  	var id = event.nativeEvent.text;
+  	this.setState({id: id});
+  	fetch(API_STEM + 'id=' + id	+ '&units=imperial&APPID=' + API_STEM)
   		.then((response) => response.json())
   		.then((responseJSON) => {
   			console.log(responseJSON);
@@ -58,9 +60,9 @@ var WeatherProject = React.createClass({
 			        <Text style={styles.mainText}>
 			          Weather for (City ID):
 			        </Text>
-			        <View style={styles.zipContainer}>
+			        <View style={styles.idContainer}>
 				        <TextInput
-				        	style={[styles.zipCode, styles.mainText]}
+				        	style={[styles.idCode, styles.mainText]}
 				        	returnKeyType='go'
 				        	onSubmitEditing={this._handleTextChange}/>
 			        </View>
@@ -101,14 +103,14 @@ var styles = StyleSheet.create({
   	alignItems: 'flex-start',
   	padding: 30,
   },
-  zipContainer: {
+  idContainer: {
   	flex: 1,
   	borderBottomColor: '#ddd',
   	borderBottomWidth: 1,
   	marginLeft: 5,
   	marginTop: 3,
   },
-  zipCode: {
+  idCode: {
   	width: 50,
   	height: baseFontSize,
   },
