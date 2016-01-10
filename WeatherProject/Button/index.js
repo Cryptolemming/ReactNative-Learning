@@ -1,8 +1,8 @@
 var React = require('react-native');
 
 var {
-	TouchableHighlight
-	Text
+	TouchableHighlight,
+	Text,
 	View
 } = React;
 var styles = require('./style.js');

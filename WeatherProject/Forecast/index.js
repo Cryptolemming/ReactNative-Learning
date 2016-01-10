@@ -4,7 +4,7 @@ var {
 	Text,
 	StyleSheet
 } = React;
-var styles = require('/styles/typography.js');
+var styles = require('../styles/typography.js');
 
 var Forecast = React.createClass({
 	render: function() {

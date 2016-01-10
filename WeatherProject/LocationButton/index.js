@@ -1,6 +1,6 @@
-var React = require('react');
+var React = require('react-native');
 var styles = require('./style.js');
-var Button = require('/Button');
+var Button = require('../Button');
 
 var LocationButton = React.createClass({
 	propTypes: {

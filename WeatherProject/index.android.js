@@ -6,5 +6,5 @@
 
 var React = require('react-native');
 var { AppRegistry } = React;
-var WeatherProject = require('./WeatherProject');
+var WeatherProject = require('./weather_project.js');
 AppRegistry.registerComponent('WeatherProject', () => WeatherProject);

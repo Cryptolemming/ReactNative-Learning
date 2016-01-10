@@ -38,7 +38,7 @@ var WeatherProject = React.createClass({
   },
 
   _getForecast: function(url, cb) {
-    fetch(url) {
+    fetch(url)
       .then((response) => response.json())
       .then((responseJSON) => {
         console.log(responseJSON);
@@ -54,7 +54,6 @@ var WeatherProject = React.createClass({
       .catch((error) => {
         console.warn(error);
       });
-    }
   },
 
   render: function() {
@@ -135,7 +134,7 @@ var styles = StyleSheet.create({
   },
   mainText: {
   	flex: 1,
-  	fontSize: baseFontSize,
+  	fontSize: textStyles.baseFontSize,
   	color: '#fff',
   },
 });
