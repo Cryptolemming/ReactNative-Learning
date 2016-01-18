@@ -13,7 +13,7 @@ var {
 } = React;
 var Game = require('./Game.js');
 
-var WheresWallE = React.createClass({
+var Game = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('WheresWallE', () => WheresWallE);
+AppRegistry.registerComponent('Game', () => WheresWallE);
