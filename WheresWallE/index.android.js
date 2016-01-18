@@ -11,6 +11,7 @@ var {
   Text,
   View,
 } = React;
+var Game = require('./Game.js');
 
 var WheresWallE = React.createClass({
   render: function() {
