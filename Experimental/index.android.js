@@ -1,5 +1,5 @@
 /**
- * various components for learning APIs etc
+ * various components to learn
  */
 'use strict';
 
