@@ -47,10 +47,12 @@ var Board = React.createClass({
 
 	render: function() {
 		var imageItems = this.props.images.map(function(image, index) {
-			return <Card image={image} key={index}/>
+			return <li className='card{#index}'><Card image={image} key={index}/></li>
 		});
 		return(
-			<View>{imageItems}</View>
+			<View>
+				<ul>{imageItems}</ul>
+			</View>
 		);
 	}
 });
@@ -59,7 +61,7 @@ var Game = React.createClass({
 
 	render: function() {
 		return(
-			<Board images={Cards} />
+				<Board images={Cards} />
 		);
 	}
 });
@@ -71,7 +73,8 @@ const styles = StyleSheet.create({
 	},
 	board: {
 
-	}
+	},
+
 });
 
 module.exports = Game;

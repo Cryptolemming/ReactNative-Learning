@@ -15,7 +15,9 @@ import Game from './Game.js';
 class WheresWallEMobile extends Component {
   render() {
     return (
-      <Game />
+      <View style={styles.container}>
+        <Game style={styles.container}/>
+      </View>
     );
   }
 };
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'black',
   },
   welcome: {
     fontSize: 20,
