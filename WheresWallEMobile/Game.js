@@ -2,12 +2,14 @@
 
 var React = require('react-native');
 var {
+	Image,
 	Text,
 	View,
 	StyleSheet
 } = React;
 
-const Cards = ['1', '2', '3', '4', '5', '6'];
+
+const Cards = ['k3xkgdci3h9mlnf/walle.jpg?dl=0', 'k3xkgdci3h9mlnf/walle.jpg?dl=0', '1ll4rd0q28y7is8/eve.jpg?dl=0', '7sbiokkeq2hnaze/john.jpg?dl=0', '93ltebnju2vd5ns/captain2.jpg?dl=0', 'uho6nbflui260ca/mary.jpg?dl=0'];
 
 var Card = React.createClass({
 	propTypes: {
@@ -17,7 +19,9 @@ var Card = React.createClass({
 
 	render: function() {
 		return(
-			<Text>{this.props.image}</Text>
+			<Image 
+				style={styles.card}
+				source={{uri: 'https://dl.dropboxusercontent.com/s/' + this.props.image}} />
 		);
 	}
 });
@@ -62,7 +66,8 @@ var Game = React.createClass({
 
 const styles = StyleSheet.create({
 	card: {
-
+		width: 50,
+		height: 50,
 	},
 	board: {
 
