@@ -13,11 +13,12 @@ var BookList = require('./ListViewDemo/BookList');
 var CrossPlatform = require('./CrossPlatformDemo/CrossPlatform');
 var FlexTest = require('./Flexbox');
 var Mondrian = require('./Mondrian/Mondrian');
+var MoviesApp = require('./MoviesApp');
 
 var Application = React.createClass({
   render: function() {
     return (
-        <Mondrian />
+        <MoviesApp />
     );
   }
 });
