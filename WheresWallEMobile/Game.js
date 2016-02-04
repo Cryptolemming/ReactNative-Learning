@@ -47,11 +47,11 @@ var Board = React.createClass({
 
 	render: function() {
 		var imageItems = this.props.images.map(function(image, index) {
-			return <li className='card{#index}'><Card image={image} key={index}/></li>
+			return <Card image={image} key={index} />			
 		});
 		return(
-			<View>
-				<ul>{imageItems}</ul>
+			<View style={styles.boardContainer}>
+				{imageItems}
 			</View>
 		);
 	}
@@ -70,11 +70,25 @@ const styles = StyleSheet.create({
 	card: {
 		width: 50,
 		height: 50,
+		borderRadius: 50,
 	},
-	board: {
-
+	boardContainer: {
+		flexDirection: 'column',
 	},
-
+	boardTopRow: {
+		flex: 5,
+		backgroundColor: 'red',
+		flexDirection: 'row',
+	},
+	boardBottomRow: {
+		backgroundColor: 'yellow',
+		flex: 2,
+		flexDirection: 'row',
+	},
+	bottom: {
+		backgroundColor: 'blue',
+		flex: 5,
+	}
 });
 
 module.exports = Game;

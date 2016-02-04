@@ -8,16 +8,24 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  Image,
 } from 'react-native';
 import Game from './Game.js';
+
+var backgroundImage = 'https://dl.dropboxusercontent.com/s/quaxsr8vn3hdi9e/background.jpg?dl=0';
 
 class WheresWallEMobile extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Game style={styles.container}/>
-      </View>
+      <Image
+        source={{uri: backgroundImage}}
+        resizeMode='cover'
+        style={styles.backdrop} >
+        <View style={styles.container}>
+          <Game />
+        </View>
+      </Image>
     );
   }
 };
@@ -27,17 +35,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  backdrop: {
+    flex: 1,
+    flexDirection: 'column',
   },
 });
 
