@@ -5,23 +5,26 @@ var {
 	Image,
 	Text,
 	View,
-	StyleSheet
+	StyleSheet,
+	TouchableHighlight,
 } = React;
-
-
-const Cards = ['k3xkgdci3h9mlnf/walle.jpg?dl=0', 'k3xkgdci3h9mlnf/walle.jpg?dl=0', '1ll4rd0q28y7is8/eve.jpg?dl=0', '7sbiokkeq2hnaze/john.jpg?dl=0', '93ltebnju2vd5ns/captain2.jpg?dl=0', 'uho6nbflui260ca/mary.jpg?dl=0'];
 
 var Card = React.createClass({
 	propTypes: {
 		image: React.PropTypes.string.isRequired,
-		//flipped: React.PropTypes.bool.isRequired,
+		flipped: React.PropTypes.boolean.isRequired,
 	},
 
 	render: function() {
+		console.log(this.props.flipped);
+		var flipStyling = this.props.flipped === true ? styles.cardFlipped : styles.card;
+
 		return(
-			<Image 
-				style={styles.card}
-				source={{uri: 'https://dl.dropboxusercontent.com/s/' + this.props.image}} />
+			<TouchableHighlight onPress={this._onPress}>
+				<Image 
+					style={[flipStyling]}
+					source={{uri: 'https://dl.dropboxusercontent.com/s/' + this.props.image}} />
+			</TouchableHighlight>
 		);
 	}
 });
@@ -41,13 +44,19 @@ var winModal = React.createClass({
 **/
 
 var Board = React.createClass({
-	propTypes: {
-		images: React.PropTypes.array.isRequired,
+	getInitialState() {
+
 	},
 
+	_onPress() {
+		this.setState({
+			Object.assign({}, )
+		})
+	}
+
 	render: function() {
-		var imageItems = this.props.images.map(function(image, index) {
-			return <Card image={image} key={index} />			
+		var imageItems = this._shuffleImages.map(function(image, index) {
+			return <Card image={image} key={index} />		
 		});
 		return(
 			<View style={styles.boardContainer}>
@@ -58,22 +67,46 @@ var Board = React.createClass({
 });
 
 var Game = React.createClass({
+	propTypes: {
+		images: React.PropTypes.array.isRequired,
+	},
+
+	_shuffleImages(images) {
+		var shuffledImages = [];
+		for (var i = 0; i < 6; i += 1) {
+			shuffledImages.push(images.splice(Math.floor(Math.random() * array.length), 1));
+		}
+		return shuffledImages;
+	},
+
+	_initialCardData(this._shuffleImages) {
+		var CardData = {};
+		this._shuffleImages.map((image) {
+			CardData[image]: false;
+		});
+	},
 
 	render: function() {
 		return(
-				<Board images={Cards} />
+			<Board cardData={this._initialCardData} />
 		);
 	}
 });
 
 const styles = StyleSheet.create({
+	boardContainer: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 	card: {
 		width: 50,
 		height: 50,
 		borderRadius: 50,
 	},
-	boardContainer: {
-		flexDirection: 'column',
+	cardFlipped: {
+		borderRadius: 100,
 	},
 	boardTopRow: {
 		flex: 5,
