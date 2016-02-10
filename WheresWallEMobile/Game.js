@@ -12,15 +12,15 @@ var {
 var Card = React.createClass({
 	propTypes: {
 		image: React.PropTypes.string.isRequired,
-		flipped: React.PropTypes.boolean.isRequired,
+		flipped: React.PropTypes.bool.isRequired,
+		onPress: React.PropTypes.func.isRequired,
 	},
 
 	render: function() {
-		console.log(this.props.flipped);
 		var flipStyling = this.props.flipped === true ? styles.cardFlipped : styles.card;
 
 		return(
-			<TouchableHighlight onPress={this._onPress}>
+			<TouchableHighlight onPress={this._onPress(this.props.image)}>
 				<Image 
 					style={[flipStyling]}
 					source={{uri: 'https://dl.dropboxusercontent.com/s/' + this.props.image}} />
@@ -43,29 +43,6 @@ var winModal = React.createClass({
 });
 **/
 
-var Board = React.createClass({
-	getInitialState() {
-
-	},
-
-	_onPress() {
-		this.setState({
-			Object.assign({}, )
-		})
-	}
-
-	render: function() {
-		var imageItems = this._shuffleImages.map(function(image, index) {
-			return <Card image={image} key={index} />		
-		});
-		return(
-			<View style={styles.boardContainer}>
-				{imageItems}
-			</View>
-		);
-	}
-});
-
 var Game = React.createClass({
 	propTypes: {
 		images: React.PropTypes.array.isRequired,
@@ -79,16 +56,35 @@ var Game = React.createClass({
 		return shuffledImages;
 	},
 
-	_initialCardData(this._shuffleImages) {
+	_initialCardData() {
 		var CardData = {};
-		this._shuffleImages.map((image) {
-			CardData[image]: false;
+		this._shuffleImages.map((image) => {
+			CardData[image] = false;
+		});
+	},
+
+	getInitialState() {
+		return {
+			cardData: this._initialCardData;
+		}
+	},
+
+	_onPress(image) {
+		var updatedCardData = Object.assign({}, this.state.cardData, cardData[image] = true);
+		this.setState({
+			cardData: updatedCardData;
 		});
 	},
 
 	render: function() {
+		var cardObj = this.state.cardData;
+		var board = Object.keys(cardObj).map((value, index) => {
+			<Card image={value} key={index} onPress={this._onPress} flipped={cardObj[value]} />
+		});
 		return(
-			<Board cardData={this._initialCardData} />
+			<View style={styles.boardContainer}>
+				{board}
+			</View>
 		);
 	}
 });
