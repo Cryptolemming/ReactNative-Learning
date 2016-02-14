@@ -23,7 +23,7 @@ var Card = React.createClass({
 		return(
 			<TouchableHighlight onPress={this.props.onPress(this.props.image)}>
 				<Image 
-					style={[flipStyling]}
+					style={styles.card}
 					source={{uri: 'https://dl.dropboxusercontent.com/s/' + this.props.image}} />
 			</TouchableHighlight>
 		);
@@ -54,7 +54,7 @@ var Game = React.createClass({
 	_shuffleImages(images) {
 		var shuffledImages = [];
 		for (var i = 0; i < 6; i += 1) {
-			shuffledImages.push(images[Math.floor(Math.random() * images.length)]);
+			shuffledImages.push(images.slice(Math.floor(Math.random() * images.length), 1));
 		};
 		return shuffledImages;
 	},
@@ -88,7 +88,7 @@ var Game = React.createClass({
 		// use the state card data object to render cards and assign props for Card
 		var board = cards.map((card, index) => {
 			console.log(card);
-			<Card image={card} key={index} onPress={this._onPress} flipped={this.state.flippedValues[index]}/>
+			<Card image={card[0]} key={index} onPress={this._onPress} flipped={this.state.flippedValues[index]}/>
 		});
 		return(
 			<View style={styles.boardContainer}>
