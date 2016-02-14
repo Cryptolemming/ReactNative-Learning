@@ -10,6 +10,7 @@ var {
 } = React;
 
 var Card = React.createClass({
+	// takes in an image, flipped truthiness, and onPress flipped function as props
 	propTypes: {
 		image: React.PropTypes.string.isRequired,
 		flipped: React.PropTypes.bool.isRequired,
@@ -17,10 +18,10 @@ var Card = React.createClass({
 	},
 
 	render: function() {
-		var flipStyling = this.props.flipped === true ? styles.cardFlipped : styles.card;
+		var flipStyling = this.props.flipped ? styles.cardFlipped : styles.card;
 
 		return(
-			<TouchableHighlight onPress={this._onPress(this.props.image)}>
+			<TouchableHighlight onPress={this.props.onPress(this.props.image)}>
 				<Image 
 					style={[flipStyling]}
 					source={{uri: 'https://dl.dropboxusercontent.com/s/' + this.props.image}} />
@@ -44,42 +45,50 @@ var winModal = React.createClass({
 **/
 
 var Game = React.createClass({
+	// takes the images array as a prop from the main component
 	propTypes: {
 		images: React.PropTypes.array.isRequired,
 	},
 
+	// shuffles the images for the cards
 	_shuffleImages(images) {
 		var shuffledImages = [];
 		for (var i = 0; i < 6; i += 1) {
-			shuffledImages.push(images.splice(Math.floor(Math.random() * array.length), 1));
-		}
+			shuffledImages.push(images[Math.floor(Math.random() * images.length)]);
+		};
 		return shuffledImages;
 	},
 
-	_initialCardData() {
-		var CardData = {};
-		this._shuffleImages.map((image) => {
-			CardData[image] = false;
-		});
-	},
-
+	// the initial state is that initial card data object
 	getInitialState() {
+		var startingImages = this._shuffleImages(this.props.images);
+		var flippedValues = [false, false, false, false, false, false];
+		console.log(startingImages);
 		return {
-			cardData: this._initialCardData;
-		}
+			shuffledCards: startingImages,
+			flippedValues: flippedValues,
+			flippedImages: [],
+		};
 	},
 
+	// when a card is pressed, update state truthiness for the card being flipped
 	_onPress(image) {
-		var updatedCardData = Object.assign({}, this.state.cardData, cardData[image] = true);
+		var updateFlippedValues = this.state.flippedValues;
+		updateFlippedValues[key] = true;
+		var updateFlippedImages = this.state.flippedImages;
+		updateFlippedImages[key] = this.state.shuffledCards[key];
 		this.setState({
-			cardData: updatedCardData;
+			flippedValues: updateFlippedValues,
+			flippedImages: updateFlippedImages,
 		});
 	},
 
 	render: function() {
-		var cardObj = this.state.cardData;
-		var board = Object.keys(cardObj).map((value, index) => {
-			<Card image={value} key={index} onPress={this._onPress} flipped={cardObj[value]} />
+		var cards = this.state.shuffledCards;
+		// use the state card data object to render cards and assign props for Card
+		var board = cards.map((card, index) => {
+			console.log(card);
+			<Card image={card} key={index} onPress={this._onPress} flipped={this.state.flippedValues[index]}/>
 		});
 		return(
 			<View style={styles.boardContainer}>
@@ -103,6 +112,8 @@ const styles = StyleSheet.create({
 	},
 	cardFlipped: {
 		borderRadius: 100,
+		width: 50,
+		height: 50,
 	},
 	boardTopRow: {
 		flex: 5,

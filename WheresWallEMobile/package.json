@@ -6,7 +6,6 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react-native": "0.18.1",
-    "react-native-orientation": "1.13.0"
+    "react-native": "0.18.1"
   }
 }
