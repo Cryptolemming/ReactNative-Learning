@@ -1,5 +1,7 @@
 'use strict';
 
+const CARDS = ['k3xkgdci3h9mlnfd/walle.jpg?dl=0', 'k3xkgdci3h9mlnf/walle.jpg?dl=0', '1ll4rd0q28y7is8/eve.jpg?dl=0', '7sbiokkeq2hnaze/john.jpg?dl=0', '93ltebnju2vd5ns/captain2.jpg?dl=0', 'uho6nbflui260ca/mary.jpg?dl=0'];
+
 var React = require('react-native');
 var {
 	Image,
@@ -21,9 +23,9 @@ var Card = React.createClass({
 		var flipStyling = this.props.flipped ? styles.cardFlipped : styles.card;
 
 		return(
-			<TouchableHighlight onPress={this.props.onPress(this.props.image)}>
+			<TouchableHighlight onPress={this.props.onPress}>
 				<Image 
-					style={styles.card}
+					style={flipStyling}
 					source={{uri: 'https://dl.dropboxusercontent.com/s/' + this.props.image}} />
 			</TouchableHighlight>
 		);
@@ -52,11 +54,19 @@ var Game = React.createClass({
 
 	// shuffles the images for the cards
 	_shuffleImages(images) {
-		var shuffledImages = [];
-		for (var i = 0; i < 6; i += 1) {
-			shuffledImages.push(images.slice(Math.floor(Math.random() * images.length), 1));
-		};
-		return shuffledImages;
+		var currentIndex = images.length, temporaryValue, randomIndex;
+
+		while (currentIndex !== 0) {
+			randomIndex = Math.floor(Math.random() * images.length);
+			currentIndex -= 1;
+
+			// swap a random value with a value at the back
+			temporaryValue = images[currentIndex];
+			images[currentIndex] = images[randomIndex];
+			images[randomIndex] = temporaryValue;
+		}
+
+		return images;
 	},
 
 	// the initial state is that initial card data object
@@ -72,11 +82,11 @@ var Game = React.createClass({
 	},
 
 	// when a card is pressed, update state truthiness for the card being flipped
-	_onPress(image) {
+	_onPress(image, index) {
 		var updateFlippedValues = this.state.flippedValues;
-		updateFlippedValues[key] = true;
+		updateFlippedValues[index] = true;
 		var updateFlippedImages = this.state.flippedImages;
-		updateFlippedImages[key] = this.state.shuffledCards[key];
+		updateFlippedImages[index] = this.state.shuffledCards[index];
 		this.setState({
 			flippedValues: updateFlippedValues,
 			flippedImages: updateFlippedImages,
@@ -88,11 +98,13 @@ var Game = React.createClass({
 		// use the state card data object to render cards and assign props for Card
 		var board = cards.map((card, index) => {
 			console.log(card);
-			<Card image={card[0]} key={index} onPress={this._onPress} flipped={this.state.flippedValues[index]}/>
+			<Card image={card} key={index} />
 		});
+		var onPress = this._onPress;
+		var flipped = this.state.flippedValues[1];
 		return(
 			<View style={styles.boardContainer}>
-				{board}
+				<Card image={'k3xkgdci3h9mlnf/walle.jpg?dl=0'} key={1} onPress={onPress} flipped={flipped} />
 			</View>
 		);
 	}
