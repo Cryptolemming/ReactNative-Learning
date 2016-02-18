@@ -96,15 +96,11 @@ var Game = React.createClass({
 	render: function() {
 		var cards = this.state.shuffledCards;
 		// use the state card data object to render cards and assign props for Card
-		var board = cards.map((card, index) => {
-			console.log(card);
-			<Card image={card} key={index} />
-		});
-		var onPress = this._onPress;
-		var flipped = this.state.flippedValues[1];
+
 		return(
 			<View style={styles.boardContainer}>
-				<Card image={'k3xkgdci3h9mlnf/walle.jpg?dl=0'} key={1} onPress={onPress} flipped={flipped} />
+				<Card image={'k3xkgdci3h9mlnf/walle.jpg?dl=0'} key={1} onPress={this._onPress} flipped={this.state.flippedValues[1]} />
+				<Text style={{color: 'white'}}>{this.state.flippedValues}</Text>
 			</View>
 		);
 	}
@@ -123,9 +119,9 @@ const styles = StyleSheet.create({
 		borderRadius: 50,
 	},
 	cardFlipped: {
-		borderRadius: 100,
-		width: 50,
-		height: 50,
+		borderRadius: 50,
+		width: 200,
+		height: 200,
 	},
 	boardTopRow: {
 		flex: 5,
