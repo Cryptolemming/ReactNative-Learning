@@ -81,6 +81,12 @@ var Game = React.createClass({
 		};
 	},
 
+	_createBoard() {
+		this.state.shuffledCards.map(function(card, index) {
+			return <Card image={card} key={index} onPress={this._onPress} flipped={this.state.flippedValues[index]} />
+		});
+	},
+
 	// when a card is pressed, update state truthiness for the card being flipped
 	_onPress(image, index) {
 		var updateFlippedValues = this.state.flippedValues;
@@ -100,7 +106,7 @@ var Game = React.createClass({
 		return(
 			<View style={styles.boardContainer}>
 				<Card image={'k3xkgdci3h9mlnf/walle.jpg?dl=0'} key={1} onPress={this._onPress} flipped={this.state.flippedValues[1]} />
-				<Text style={{color: 'white'}}>{this.state.flippedValues}</Text>
+				{this._createBoard}
 			</View>
 		);
 	}
