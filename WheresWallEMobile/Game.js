@@ -23,7 +23,7 @@ var Card = React.createClass({
 		var flipStyling = this.props.flipped ? styles.cardFlipped : styles.card;
 
 		return(
-			<TouchableHighlight onPress={this.props.onPress}>
+			<TouchableHighlight onPress={this.props.onPress()}>
 				<Image 
 					style={flipStyling}
 					source={{uri: 'https://dl.dropboxusercontent.com/s/' + this.props.image}} />
@@ -81,12 +81,6 @@ var Game = React.createClass({
 		};
 	},
 
-	_createBoard() {
-		this.state.shuffledCards.map(function(card, index) {
-			return <Card image={card} key={index} onPress={this._onPress} flipped={this.state.flippedValues[index]} />
-		});
-	},
-
 	// when a card is pressed, update state truthiness for the card being flipped
 	_onPress(image, index) {
 		var updateFlippedValues = this.state.flippedValues;
@@ -100,13 +94,10 @@ var Game = React.createClass({
 	},
 
 	render: function() {
-		var cards = this.state.shuffledCards;
 		// use the state card data object to render cards and assign props for Card
-
 		return(
 			<View style={styles.boardContainer}>
 				<Card image={'k3xkgdci3h9mlnf/walle.jpg?dl=0'} key={1} onPress={this._onPress} flipped={this.state.flippedValues[1]} />
-				{this._createBoard}
 			</View>
 		);
 	}
