@@ -1,7 +1,5 @@
 'use strict';
 
-const CARDS = ['k3xkgdci3h9mlnfd/walle.jpg?dl=0', 'k3xkgdci3h9mlnf/walle.jpg?dl=0', '1ll4rd0q28y7is8/eve.jpg?dl=0', '7sbiokkeq2hnaze/john.jpg?dl=0', '93ltebnju2vd5ns/captain2.jpg?dl=0', 'uho6nbflui260ca/mary.jpg?dl=0'];
-
 var React = require('react-native');
 var {
 	Image,
@@ -94,10 +92,12 @@ var Game = React.createClass({
 	},
 
 	render: function() {
-		// use the state card data object to render cards and assign props for Card
+		var board = this.state.shuffledCards.map((card, index) => {
+			return <Card image={card} key={index} onPress={this._onPress} flipped={this.state.flippedValues[index]} />
+		});
 		return(
 			<View style={styles.boardContainer}>
-				<Card image={'k3xkgdci3h9mlnf/walle.jpg?dl=0'} key={1} onPress={this._onPress} flipped={this.state.flippedValues[1]} />
+				{board}
 			</View>
 		);
 	}
