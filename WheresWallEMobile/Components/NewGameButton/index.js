@@ -1,0 +1,51 @@
+var React = require('react-native');
+var {
+	Image,
+	Text,
+	View,
+	StyleSheet,
+	TouchableHighlight,
+} = React;
+
+'use strict';
+
+const styles = {
+	newGame: {
+		background: 'transparent',
+		padding: '5px',
+		fontStyle: 'bold',
+		margin: '-25px 0px 0px 115px',
+		border: '0px !important',
+		cursor: 'pointer',
+		float: 'right',
+		fontSize: '1.6em',
+		':hover': {
+			color: '#00ff00', 
+			opacity: 1,
+		}
+	},
+};
+
+@Radium
+export default class NewGameButton extends React.Component {
+	constructor(props) {
+		super(props);
+		this._onClickHandler = this._onClickHandler.bind(this);
+	}
+
+	_onClickHandler() {
+		this.props.onClick()
+	}
+
+	render() {
+		var styleGameOver
+			= this.props.gameOver
+			? {color: '#00ff00', opacity: 1}
+			: {color: 'gray', opacity: .4}
+
+		return (
+			// FontAwesome in ReactNative?
+			<li><i onClick={this._onClickHandler} style={[styles.newGame, styleGameOver]} className='fa fa-refresh'></i></li>
+		);
+	}
+};
