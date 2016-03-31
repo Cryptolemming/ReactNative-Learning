@@ -1,11 +1,12 @@
-var React = require('react-native');
-var {
-	Image,
-	Text,
-	View,
-	StyleSheet,
-	TouchableHighlight,
-} = React;
+import React, {
+  AppRegistry,
+  Component,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+} from 'react-native';
 import Card from '../Card';
 import NewGameButton from '../NewGameButton';
 import WinModal from '../WinModal';
@@ -46,8 +47,7 @@ const styles = {
 	}
 };
 
-@Radium
-export default class Game extends React.Component {
+export default class Game extends Component {
 	constructor(props) {
 		super(props);
 		this._onClick = this._onClick.bind(this);

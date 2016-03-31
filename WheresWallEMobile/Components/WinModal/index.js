@@ -1,11 +1,12 @@
-var React = require('react-native');
-var {
-	Image,
-	Text,
-	View,
-	StyleSheet,
-	TouchableHighlight,
-} = React;
+import React, {
+  AppRegistry,
+  Component,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+} from 'react-native';
 
 'use strict';
 
@@ -29,8 +30,7 @@ const styles = {
 	},
 };
 
-@Radium
-export default class WinModal extends React.Component {
+export default class WinModal extends Component {
 	constructor(props) {
 		super(props);
 	}

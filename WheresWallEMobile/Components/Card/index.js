@@ -1,11 +1,12 @@
-var React = require('react-native');
-var {
-	Image,
-	Text,
-	View,
-	StyleSheet,
-	TouchableHighlight,
-} = React;
+import React, {
+  AppRegistry,
+  Component,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+} from 'react-native';
 
 'use strict';
 
@@ -28,11 +29,9 @@ var styles = {
 	},
 };
 
-@Radium
-export default class Card extends React.Component {
+export default class Card extends Component {
 	constructor(props) {
 		super(props);
-		this._onClickHandler = this._onClickHandler.bind(this);
 	}
 
 	_onClickHandler() {
@@ -47,11 +46,11 @@ export default class Card extends React.Component {
 			: {backgroundColor: 'gray'};
 
 		return(
-			<TouchableHighlight onClick={this._onClickHandler}>
-				// swap for Image tag?
-				<li>
+			// swap for Image tag?
+			<TouchableHighlight onPress={this._onPressHandler}>
+				<Image
 					style={[styles.card, styleFlipped]}>
-				</li>
+				</Image>
 			</TouchableHighlight>
 		);
 	}

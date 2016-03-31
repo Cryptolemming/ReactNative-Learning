@@ -1,11 +1,12 @@
-var React = require('react-native');
-var {
-	Image,
-	Text,
-	View,
-	StyleSheet,
-	TouchableHighlight,
-} = React;
+import React, {
+  AppRegistry,
+  Component,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+} from 'react-native';
 
 'use strict';
 
@@ -26,14 +27,12 @@ const styles = {
 	},
 };
 
-@Radium
-export default class NewGameButton extends React.Component {
+export default class NewGameButton extends Component {
 	constructor(props) {
 		super(props);
-		this._onClickHandler = this._onClickHandler.bind(this);
 	}
 
-	_onClickHandler() {
+	_onPressHandler() {
 		this.props.onClick()
 	}
 
@@ -44,8 +43,9 @@ export default class NewGameButton extends React.Component {
 			: {color: 'gray', opacity: .4}
 
 		return (
-			// FontAwesome in ReactNative?
-			<li><i onClick={this._onClickHandler} style={[styles.newGame, styleGameOver]} className='fa fa-refresh'></i></li>
-		);
+			// FontAwesome in ReactNative? Use Reat Native Icons
+			<TouchableHighlight onPress={this._onPressHandler}
+				<Text style={[styles.newGame, styleGameOver]}>Refresh</Text>
+			</TouchableHighlight>
 	}
 };
